@@ -6,10 +6,10 @@ from django.db import models
 
 class UserProfile(models.Model):
     user=models.OneToOneField(User)
-    nick_name=models.CharField(max_length=30,default="Mike")
+    nickname=models.CharField(max_length=30)
     
     def __unicode__(self):
-        return self.nick_name
+        return self.nickname
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
