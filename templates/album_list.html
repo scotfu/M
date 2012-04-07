@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block buy %}
+
+{% if not object_list %}
+<div class="alert alert-info span11" align="center">
+没有任何相关专辑
+</div>
+{% endif %}
+
+{% endblock buy %}
+
+{% block content %}    
+<div class="page-header">
+  <h2>专辑列表</h2>
+</div>
+
+<div class="span 10 pull-left">
+<ul class="thumbnails">
+
+{% if object_list %}
+
+   {% for album in object_list %}
+    <li class="myspan2">
+    <a href="/album/{{album.id}}/" class="thumbnail">
+	 
+	 <img src="/static/{{album.pic}}" alt="">
+	  <p align="center">{{ album.singer }} : {{album.title|truncatechars:20}} </p>
+    </a>
+		</li>
+	 {% endfor %}
+
+{% endif %}
+
+</ul>
+</div>
+<div class=" pagination span11" align="center" >
+  <ul align>
+    {% if object_list.has_previous %}
+    <li>  <a href="?page={{ object_list.previous_page_number }}">前一页</a></li>
+    {% else %}
+    <li class="active">  <a href="#">前一页</a></li>
+    {% endif %}
+    
+    
+    <li class="active">
+      <a href="#"> {{ object_list.number }} / {{ object_list.paginator.num_pages }}</a>
+    </li>
+       {% if object_list.has_next %}
+          <li> <a href="?page={{ object_list.next_page_number }}">后一页</a></li>
+        {% else %}
+         <li class="active"> <a href="" >后一页</a></li>
+       {% endif %}
+  </ul>
+</div>
+
+    
+    
+{% endblock %}

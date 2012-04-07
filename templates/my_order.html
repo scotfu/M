@@ -1,0 +1,46 @@
+﻿{% extends "base.html" %}
+{% block title %}
+我的订单
+{% endblock title %}
+{% block content %}
+<div class="page-header">
+  <h2>订单历史</h2>
+</div>
+{% for order in order_set %}
+<div class="well span10">
+  <div class="span2">
+  <label>时间：</label>{{order.create_date}}
+  <label>地址：</label>{{order.address}}</br>
+  货物数：{{order.orderdetail_set.all|length}}
+  总价：{{ order.price}}
+  <label>状态：</label>
+  <div class="progress progress-striped
+     active">
+  <div class="bar" style="width:
+ {% if order.finished %}
+   100%
+  {% else %}
+    50%
+  {% endif %};"></div>
+</div>
+  </div>
+    <div class="span7 pull-left">
+    <ul class="thumbnails">
+  {% for orderdetail in order.orderdetail_set.all %}
+
+    <li class="myspan1">
+    <a href="/album/{{orderdetail.album.id}}" class="thumbnail">
+      <img src="/static/{{orderdetail.album.pic}}" alt="">
+    ￥:{{orderdetail.per_price}} *{{orderdetail.amount}} 
+  
+    </a>
+	</li>
+  {% endfor %}
+     </ul>
+	</div>
+  </div>
+{% endfor %}
+
+{% endblock content %}
+
+
