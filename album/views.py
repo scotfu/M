@@ -37,19 +37,21 @@ def add(request):
         }, context_instance=RequestContext(request))
 
 
-def genre(request, genre):
+def genre(request, genre_name):
     try:
-        genre=Genre.objects.get(name=genre)
+        genre=Genre.objects.get(name=genre_name)
         album_list=Album.objects.all().filter(genre=genre)
     except:
         album_list=None
     if  album_list:
         return render_to_response('album_list.html', {
-            'object_list': my_pageination(request, album_list)},
+            'object_list': my_pageination(request, album_list),
+            'genre': genre_name},
             context_instance=RequestContext(request))
     else:
         return render_to_response('album_list.html', {
-            'object_list': album_list},
+            'object_list': album_list,
+            'genre': genre_name},
             context_instance=RequestContext(request))
 
 
@@ -60,19 +62,21 @@ def search(request, key_word=''):
     except:
         album_list=None
     if album_list:
-        return render_to_response('album_list.html', {
-            'object_list': my_pageination(request, album_list)},
+        return render_to_response('search_result.html', {
+            'object_list': my_pageination(request, album_list),
+            'key_word': key_word},
             context_instance=RequestContext(request))
     else:
-        return render_to_response('album_list.html', {
-            'object_list': album_list},
+        return render_to_response('search_result.html', {
+            'object_list': album_list,
+            'key_word': key_word},
             context_instance=RequestContext(request))
 
 
 def indexview(request):
     album_list=Album.objects.all()
-    return render_to_response('album_list.html',{
-        'object_list':my_pageination(request, album_list)},
+    return render_to_response('album_list.html', {
+        'object_list': my_pageination(request, album_list)},
         context_instance=RequestContext(request))
 
 
@@ -108,3 +112,4 @@ def my_pageination(request, object_list):
 # If page is out of range (e.g. 9999), deliver last page of results.
         objects = paginator.page(paginator.num_pages)
     return objects
+

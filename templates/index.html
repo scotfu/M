@@ -5,7 +5,7 @@
 {% endblock title %}
 
 {% block content %}
-
+<div id="top" class="row">
 <div id="myCarousel" class="carousel slide myspan4">
             <div class="carousel-inner">
               <div class="item active">
@@ -19,7 +19,7 @@
               </div>
               <div class="item">
 			  <a href="/album/3/">
-                <img src="/static/img/05.jpg" alt="">
+                <img src="/static/img/04.jpg" alt="">
                 <div class="carousel-caption">
                   <h4>Come Back To Me</h4>
                   <p>这次是宇多田光相隔五年后，再次向世界的舞台进军。Utada优美的歌声加上稳沉的钢琴配乐，而歌词则是以 叙事的形式陈述。</p>
@@ -41,36 +41,42 @@
 			
 </div>
 
-<div class="span5">
+<div class="myspan4">
    <div class="hero-unit">
   <h1>敬请期待</h1>
-  <p>Tagline</p>
+  <p></p>
   <p>
-    <a class="btn btn-primary btn-large">
-      更多
+    <a class="btn btn-info btn-large">
+      更多功能即将上线
     </a>
   </p>
     </div>
 </div>
 
 
-<div class="span2 pull">
-   <div class="hero-unit">
-  <h2>榜单</h2>
-  <p>Tagline</p>
-  <p>
-    <a class="btn btn-primary btn-large">
-      更多
-    </a>
-  </p>
-    </div>
+<div class="pull-right">
+    <div class="mypage-header">
+<h3>榜单</h3></div>
+       <ul class="nav nav-tabs nav-stacked">
+           <li><a href="">1. Hakasama no Chou</a></li>
+           <li><a href="">2. Viva la Vida or Death and All His Friends</a></li>
+           <li><a href="">3. Come Back To Me</a></li>
+           <li><a href="">4. Goodbye Lullaby</a></li>
+           <li><a href="">5. Hybrid Theory</a></li>
+           <li><a href="">6. BoA</a></li>
+           <li><a href="">7. Born To Die</a></li>
+           <li><a href="">8. 卡农绝赞</a></li>
+           <li><a href="">9. A Song for XX</a></li>
+           <li><a href="">10.NEVER SAY NEVER</a></li>
+       </ul>
+
 </div>
 
 
+</div>
 
 
-
-<div class="span12">
+<div class="">
 <div class="page-header">
   <h1>正在热销</h1>
 </div>
@@ -133,7 +139,6 @@
 </ul>
 </div>
 <script type="text/javascript">
-
 $('.carousel').carousel({
   interval: 2000
 })

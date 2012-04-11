@@ -7,7 +7,7 @@
 {% block buy %}
 
 {% if buy %}
-<div class="alert alert-info span11" align="center">
+<div class="alert alert-info" align="center">
 曾经购买过
 </div>
 {% endif %}
@@ -28,9 +28,13 @@
         $("a#cart").attr("href",url)
     }
 	</script>
-<div class="page-header">
+	
+<header class="jumbotron subhead page-header" id="overview">
   <h2>{{ album.title }}</h2>
-</div>
+ 
+</header>
+
+<div class="row">
 <div class="span3">
  <a href="#" class="thumbnail">
       <img src="/static/{{album.pic}}" alt="">
@@ -43,17 +47,17 @@
 <h4>价格{{ album.price }}</h4>
 </div>
 
-<div id="addtocart"class="well span2">
+<div id="addtocart"class="well span2 pull-right">
 <select name="amount" id="amount" class="span1" onchange="Change(this)">
 <option value="1" selected>1</option>
 <option value="2">2</option>
 <option value="3">3</option>
 </select>
-<a class="btn btn-large btn-success" id="cart" href="/cart/add/{{album.id}}/?"><i class="icon-shopping-cart icon-white"></i> 加入到购物车</a>
+<a class="btn btn-large btn-success" id="cart" href="/cart/add/{{album.id}}/?"><i class="icon-shopping-cart icon-white"></i> 加入购物车</a>
+</div>
 </div>
 
-
-<div id="desciption" class="span11">
+<div id="desciption">
 <div class="page-header">
   <h3>简介</h3>
 </div>

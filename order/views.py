@@ -49,7 +49,7 @@ def order(request):
 
 @login_required
 def my_order(request):
-    order_set=Order.objects.all().filter(user=request.user)
+    order_set=Order.objects.all().filter(user=request.user).order_by('-create_date')
     return render_to_response('my_order.html',
         {'order_set': order_set},
         context_instance=RequestContext(request))

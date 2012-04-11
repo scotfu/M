@@ -10,12 +10,15 @@
 
 {% endblock buy %}
 
-{% block content %}    
-<div class="page-header">
-  <h2>专辑列表</h2>
-</div>
+{% block content %}  
+{% block mytitle %} 
+<header class="jumbotron subhead page-header" id="overview">
+    <h2>专辑列表</h2>
+ 
+</header>
 
-<div class="span 10 pull-left">
+{% endblock mytitle %} 
+<div>
 <ul class="thumbnails">
 
 {% if object_list %}
@@ -24,8 +27,8 @@
     <li class="myspan2">
     <a href="/album/{{album.id}}/" class="thumbnail">
 	 
-	 <img src="/static/{{album.pic}}" alt="">
-	  <p align="center">{{ album.singer }} : {{album.title|truncatechars:20}} </p>
+	 <img src="/static/{{album.pic}}" title="{{album.title}}">
+	  <p align="center">{{ album.singer }} : {{album.title|truncatechars:12}} </p>
     </a>
 		</li>
 	 {% endfor %}
@@ -34,8 +37,8 @@
 
 </ul>
 </div>
-<div class=" pagination span11" align="center" >
-  <ul align>
+<div class="pagination pagination-centered">
+  <ul>
     {% if object_list.has_previous %}
     <li>  <a href="?page={{ object_list.previous_page_number }}">前一页</a></li>
     {% else %}

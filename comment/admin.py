@@ -5,5 +5,6 @@ from comment.models import Comment
 
 
 class CommentAdmin(admin.ModelAdmin):
-     pass
+     list_display = ('id', 'album', 'user','create_time')
+     list_filter = ('album', 'user')
 admin.site.register(Comment,CommentAdmin)

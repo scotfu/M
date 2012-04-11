@@ -3,6 +3,7 @@
 from django.core.exceptions import ValidationError
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 from django import forms
 #from django.forms import ModelForm
 import re
@@ -10,8 +11,8 @@ import re
 
 class LoginForm(forms.Form):
 
-    username=forms.CharField(max_length=20)
-    password=forms.CharField(widget= forms.PasswordInput())
+    username=forms.CharField(max_length=20, label='用户名')
+    password=forms.CharField(widget= forms.PasswordInput(), label='密码')
 
     def clean_username(self):
         username=self.cleaned_data['username']
@@ -19,26 +20,31 @@ class LoginForm(forms.Form):
 
     def clean_password(self):
         password=self.cleaned_data['password']
+        user = authenticate(username=self.cleaned_data['username'],
+        password=self.cleaned_data['password'])
+        if user is None:
+            raise forms.ValidationError('用户名或者密码错误')
         return password
 
 
 class RegisterForm(forms.Form):
 
-    email=forms.EmailField()
-    username=forms.CharField(max_length=20, help_text="")
-    password=forms.CharField(widget=forms.PasswordInput())
-    confirm_password=forms.CharField(widget=forms.PasswordInput())
-    nick_name=forms.CharField()
+    email=forms.EmailField(label='Email')
+    username=forms.CharField(max_length=20, label='用户名')
+    password=forms.CharField(widget=forms.PasswordInput(), label='密码')
+    confirm_password=forms.CharField(widget=forms.PasswordInput(),
+                            label='确认密码')
+    nickname=forms.CharField(max_length=20, label='昵称')
 
     def clean_username(self):
         username=self.cleaned_data['username']
         if not re.search(r'\w+$', username):
-            raise ValidationError('Only ')
+            raise ValidationError('输入非法')
         try:
             User.objects.get(username=username)
         except ObjectDoesNotExist:
             return username
-        raise forms.ValidationError('The name is already exist')
+        raise forms.ValidationError('用户名已被注册')
 
     def clean_email(self):
         email=self.cleaned_data['email']
@@ -46,7 +52,7 @@ class RegisterForm(forms.Form):
             User.objects.get(email=email)
         except ObjectDoesNotExist:
             return email
-        raise forms.ValidationError('The email is already exist')
+        raise forms.ValidationError('邮箱地址已被注册')
 
     def clean_confirm_password(self):
         if 'password' in self.cleaned_data:
@@ -56,9 +62,9 @@ class RegisterForm(forms.Form):
                 confirm_password=self.cleaned_data['confirm_password']
                 if password == confirm_password:
                     return confirm_password
-                raise ValidationError('Do not match')
-            raise forms.ValidationError('Type the confirm password')
-        raise forms.ValidationError('Type password')
+                raise ValidationError('两次输入的密码不一样')
+            raise forms.ValidationError('请输入确认密码')
+        raise forms.ValidationError('请输入密码')
 
 
 class CommentForm(forms.Form):
@@ -94,7 +100,7 @@ class AccountForm(forms.Form):
                     return confirm_password
                 raise forms.ValidationError('Do not match')
             raise forms.ValidationError('Type the confirm password')
-        raise forms.validationError('Type the password')
+        raise forms.ValidationError('Type the password')
 
 
 class AddressForm(forms.Form):

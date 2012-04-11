@@ -57,7 +57,7 @@
 
              <ul class="nav ">
             <div class="navbar-search pull-left">
-             <input type="text" id="search" class="search-query span2"></input>
+             <input type="text" id="search" class="search-query span2"/>
            </div>
               <button class="btn"  href="/album/search/" onClick="myclick(search.value)">搜索</button>
             </ul>
@@ -68,36 +68,47 @@
       </div>
     </div><!-- /navbar-inner -->
   </div><!-- /navbar -->
+
         
 	    <section >
+        {% if form.errors %}
+        <div class="alert alert-error" align="center">
+        用户名或者密码错误
+        {% endif %}
+        
+        </div>
+        
         </section>
-  <div class="well container">
-{% if form.errors %}
-<p>用户名或者密码错误</p>
-{% endif %}
 
-<form class="well form-horizontal span8" method="post" action="/accounts/login/">
+        
+  <div class="container">
+
+<div class="page-header">
+  <h2>登陆</h2>
+</div>
+
+<form class="form-horizontal span5" method="post" action="/accounts/login/">
 {% csrf_token %}
 <fieldset>
-<div class="control-group">
-<label class="control-label" for="username">账号:</label>
-<div class="controls">
-<input type="text" name="username" class="span3" placeholder="Username">
-</div>
-</div>
+       {% for field in form.visible_fields %}
 
-<div class="control-group">
-<label class="control-label" for="password">密码:</label>
-<div class="controls">
-<input type="password" name="password" class="span3" placeholder="Your password">
+     <div class="control-group">
+
+       <label class="control-label" for="{{ field.name}}">{{ field.label}}</label> 
+       <div class="controls">
+       {# <input type="text" name="{{field.name}}" class="span3" placeholder="{{ field.label }}"> #}
+       {{field}}
+       <span class="help-inline"></span>
+       </div>
+       </div>
+ 
+{% endfor %}
+
 <input type="hidden" name="next" value="{{next}}">
-</div>
-</div>
-
 </fieldset>
           <div class="form-actions">
             <button type="submit" class="btn btn-primary">登陆</button>
-            <button class="btn">取消</button>
+            
           </div>
 </form>
    </div>

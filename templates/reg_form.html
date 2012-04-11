@@ -9,40 +9,24 @@
 <form class="form-horizontal span6" method="post" action="/accounts/register/">
 {% csrf_token %}
 <fieldset>
-<div class="control-group">
-<label class="control-label" for="email">Email</label>
-<div class="controls">
-<input type="text" name="email" class="span3" placeholder="Your Email address">
-</div>
-</div>
+       {% for field in form.visible_fields %}
+      {% if field.errors %}
+       <div class="control-group error">
+    {% else %}
+     <div class="control-group">
+    {% endif %}
+       <label class="control-label" for="{{ field.name}}">{{ field.label}}</label> 
+       <div class="controls">
+       {# <input type="text" name="{{field.name}}" class="span3" placeholder="{{ field.label }}"> #}
+       {{field}}
+       <span class="help-inline">{{field.errors}}</span>
+       </div>
+       </div>
+ 
+{% endfor %}
 
-<div class="control-group">
-<label class="control-label" for="username">用户名</label>
-<div class="controls">
-<input type="text" name="username" class="span3" placeholder="The name you want to register">
-</div>
-</div>
 
-<div class="control-group">
-<label class="control-label" for="passowrd">密码</label>
-<div class="controls">
-<input type="password" name="password" class="span3" placeholder="Passowrd">
-</div>
-</div>
 
-<div class="control-group">
-<label class="control-label" for="confirm_password">确认密码</label>
-<div class="controls">
-<input type="password" name="confirm_password"class="span3" placeholder="Type your passoword again">
-</div>
-</div>
-
-<div class="control-group">
-<label class="control-label" for="nick_name">昵称</label>
-<div class="controls">
-<input type="text" class="span3" name="nick_name" placeholder="Your nickname">
-</div>
-</div>
 
 </fieldset>
           <div class="form-actions">

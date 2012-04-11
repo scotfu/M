@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 #coding=utf-8
-from django.http import HttpResponseRedirect #Http404
+from django.http import HttpResponseRedirect #HttpResponse Http404
 from django.shortcuts import render_to_response
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
@@ -81,6 +81,8 @@ def logoutview(request):
 
 @csrf_protect
 def register(request):
+    if  '_auth_user_id' in request.session:
+        return HttpResponseRedirect('/')
     if request.method =='POST':
         form=RegisterForm(request.POST)
         print form
@@ -97,7 +99,7 @@ def register(request):
             return HttpResponseRedirect('/accounts/register/success/')
     else:
         form=RegisterForm()
-        return render_to_response('reg_form.html', {
+    return render_to_response('reg_form.html', {
             'form': form},
             context_instance=RequestContext(request),
     )
