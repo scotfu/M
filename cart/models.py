@@ -8,6 +8,9 @@ from album.models import Album
 class Cart(models.Model):
     user=models.ForeignKey(User)
 
+    class Meta:
+        verbose_name_plural = "购物车"
+
     def __unicode__(self):
         return self.user.username
 
@@ -19,6 +22,9 @@ class CartItem(models.Model):
     cart=models.ForeignKey(Cart)
     album=models.ForeignKey(Album)
     amount=models.IntegerField(max_length=10)
+
+    class Meta:
+        verbose_name_plural = "购物车明细"
 
     def __unicode__(self):
         return self.album.title

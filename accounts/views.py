@@ -93,7 +93,7 @@ def register(request):
             email=form.cleaned_data['email'],
             )
             user_profile=user.get_profile()
-            user_profile.nickname=form.cleaned_data['nick_name']
+            user_profile.nickname=form.cleaned_data['nickname']
             user_profile.save()
             Cart.objects.create(user=user)
             return HttpResponseRedirect('/accounts/register/success/')

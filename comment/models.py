@@ -13,5 +13,8 @@ class Comment(models.Model):
     user=models.ForeignKey(User)
     album=models.ForeignKey(Album)
 
+    class Meta:
+        verbose_name_plural = "专辑评论"
+
     def __unicode__(self):
         return self.title

@@ -42,17 +42,17 @@
     {% if object_list.has_previous %}
     <li>  <a href="?page={{ object_list.previous_page_number }}">前一页</a></li>
     {% else %}
-    <li class="active">  <a href="#">前一页</a></li>
+    <li class="active">  <a>前一页</a></li>
     {% endif %}
     
     
     <li class="active">
-      <a href="#"> {{ object_list.number }} / {{ object_list.paginator.num_pages }}</a>
+      <a> {{ object_list.number }} / {{ object_list.paginator.num_pages }}</a>
     </li>
        {% if object_list.has_next %}
           <li> <a href="?page={{ object_list.next_page_number }}">后一页</a></li>
         {% else %}
-         <li class="active"> <a href="" >后一页</a></li>
+         <li class="active"> <a>后一页</a></li>
        {% endif %}
   </ul>
 </div>

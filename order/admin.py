@@ -10,14 +10,15 @@ class OrderDetailInline(admin.TabularInline):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user','price','create_date', 'finished')
-    list_filter = ('user',)
+    list_display = ('id', 'user', 'price', 'create_date', 'finished')
+    list_filter = ('user', 'create_date')
     inlines = [OrderDetailInline]
     search_fields = ['user']
 
+
 class OrderDetailAdmin(admin.ModelAdmin):
-    list_filter = ('album',)
-    list_display = ('id', 'album', 'amount','get_total_price','order')
+    list_filter = ('album', )
+    list_display = ('id', 'album', 'amount', 'get_total_price', 'order')
 
 admin.site.register(Order, OrderAdmin)
-admin.site.register(OrderDetail,OrderDetailAdmin)
+admin.site.register(OrderDetail, OrderDetailAdmin)

@@ -1,0 +1,12 @@
+*.py[co]
+*.sw[po]
+*.bak
+*.db
+*.orig
+*~
+.project
+.pydevproject
+target
+.settings
+.classpath
+.factorypath
