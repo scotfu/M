@@ -20,7 +20,7 @@ class Album(models.Model):
     company=models.CharField(max_length=30, verbose_name='发行方')
     create_date=models.DateField(auto_now_add=True)
     modify_date=models.DateField(auto_now=True)
-    store=models.ForeignKey(Store)
+    store=models.ForeignKey(Store, blank=True)
 
     def __unicode__(self):
         return self.title

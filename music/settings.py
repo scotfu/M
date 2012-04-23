@@ -1,10 +1,10 @@
 # Django settings for music project.
-
+import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-
+PROJECT_DIR=os.path.dirname(__file__).replace('\\', '/')
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+     ('Scot', 'scotfu@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -12,7 +12,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'C:/django_1/db/music.db',         # Or path to database file if using sqlite3.
+        'NAME': PROJECT_DIR+'/db/music.db',         # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -47,7 +47,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = 'C:/django_1/music/static/'
+MEDIA_ROOT = PROJECT_DIR+'/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -67,17 +67,15 @@ STATIC_URL = '/static/'
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
-#ADMIN_MEDIA_PREFIX = '/static/admin/'
-ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
-# Additional locations of static files
-#import os  
-#HERE = os.path.dirname(__file__) 
+ADMIN_MEDIA_PREFIX = '/static/admin/'
+
+
 STATICFILES_DIRS = (
-    'C:/django_1/music/static',
+    PROJECT_DIR+'/static',
+    PROJECT_DIR+'/media/',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-#	HERE+STATIC_URL,
 )
 
 # List of finder classes that know how to find static files in
@@ -95,7 +93,7 @@ SECRET_KEY = 'k&0^5bl(j--8pf3#709b4@#oq$755a#gkq5l7^ru8mku65b+#p'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+#   'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -108,10 +106,10 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'music.urls'
 
-WSGI_APPLICATION = 'music.wsgi.application'
+#WSGI_APPLICATION = 'music.wsgi.application'
 
 TEMPLATE_DIRS = (
-    'C:/django_1/music/templates',
+    PROJECT_DIR+'/templates',
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -120,7 +118,7 @@ TEMPLATE_DIRS = (
 
 TEMPLATE_CONTEXT_PROCESSORS=('django.contrib.auth.context_processors.auth',
                              'django.core.context_processors.debug',
-							 'django.core.context_processors.request',)
+			     'django.core.context_processors.request',)
 
 LOGIN_REDIRECT_URL=('/')
 
@@ -136,6 +134,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'django.contrib.staticfiles',
     'album',
     'comment',
     'address',
