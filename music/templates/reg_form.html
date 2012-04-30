@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}
+注册新用户{% endblock title %}
+{% block content %}
+<div class="page-header">
+  <h2>注册新用户</h2>
+</div>
+
+<form class="form-horizontal span6" method="post" action="/accounts/register/">
+{% csrf_token %}
+<fieldset>
+       {% for field in form.visible_fields %}
+      {% if field.errors %}
+       <div class="control-group error">
+    {% else %}
+     <div class="control-group">
+    {% endif %}
+       <label class="control-label" for="{{ field.name}}">{{ field.label}}</label> 
+       <div class="controls">
+       {# <input type="text" name="{{field.name}}" class="span3" placeholder="{{ field.label }}"> #}
+       {{field}}
+       <span class="help-inline">{{field.errors}}</span>
+       </div>
+       </div>
+ 
+{% endfor %}
+
+
+
+
+</fieldset>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">注册</button>
+          </div>
+</form>
+{% endblock content %}

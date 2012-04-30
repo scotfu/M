@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>{% block title %}Music{% endblock title%}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/bootstrap-responsive.css">
+  <script src="/static/js/jquery.js"></script>
+  <script src="/static/js/bootstrap-dropdown.js"></script>
+ <script src="/static/js/bootstrap-button.js"></script>
+   <script src="/static/js/bootstrap-carousel.js"></script>
+   <link href="/static/css/docs.css" rel="stylesheet">
+   <script src="/static/js/bootstrap-transition.js"></script>
+</head>
+
+<script type="text/javascript" >
+    function myclick(obj)
+    {
+        location.href="/album/search/"+obj;
+    }
+	</script>
+
+
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="/"><i class="icon-music icon-white"></i>M-乐</a>
+        <div class="nav-collapse">
+        {% block nav %}
+          <ul class="nav">
+            <li class="active"><a href="/">Home</a></li>
+              <li class="divider-vertical"></li>
+            <li><a href="/album/genre/Pop/">Pop</a></li>  <li class="divider-vertical"></li>
+            <li><a href="/album/genre/Rock/">Rock</a></li>  <li class="divider-vertical"></li>
+            <li><a href="/album/genre/Classical/">Classical</a></li>  <li class="divider-vertical"></li>
+        {% endblock nav %}
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="nav-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+              <li class="divider-vertical"></li>
+          </ul>
+
+  <ul class="nav">
+ <div class="navbar-form pull-left" > 
+  <input type="text" id="search" class="search-query qspan2"/>
+   <button class="btn" onClick="myclick(search.value)">搜索</button></div>
+ </ul>
+
+  
+
+          <ul class="nav pull-right ">
+            {% if user.is_authenticated %}
+                                <div class="btn-group">
+                                       <button class="btn btn-primary"><i class="icon-user icon-white"></i>{{user.get_profile.nickname}}</button>
+                                       <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                       <span class="caret"></span></button>
+                                       <ul class="dropdown-menu">
+                                         <li><a href="/cart/"><i class="icon-shopping-cart"></i>我的购物车</a></li>
+                                        <li><a href="/order/my_order/"><i class="icon-list"></i>我的订单</a></li>
+                                         <li><a href="/address/"><i class="icon-book"></i>我的地址簿</a></li>
+                                         <li class="divider"></li>
+										 <li><a href="/accounts/"><i class="icon-edit"></i>修改个人信息</a></li>
+                                        <li><a href="/accounts/logout/"><i class="icon-ban-circle"></i>注销</a></li>
+                                       </ul>
+                                </div>
+                                
+
+                                
+                              {% else %}
+                    		  {% block login %}
+							  
+                                 <form class="navbar-form  pull-right span4" action="/accounts/quicklogin/" method="post"> {% csrf_token %}
+                                <div class="row">  
+                                <input type="text" class="qspan2" name="username" placeholder="Username">
+                    			 <input type="password" class="qspan2" name="password" placeholder="Password">
+                                                        <div class="btn-group pull-right">
+                                                         <button class="btn btn-primary" type="submit"><i class="icon-user icon-white"></i>登陆</button>
+                                                                  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                                                           <span class="caret"></span></button>
+                                                                         <ul class="dropdown-menu">
+                                                                                
+                                                                                               <li><a href="/cart/"><i class="icon-shopping-cart"></i>我的购物车</a></li>
+                                                        										<li class="divider"></li>
+                                                        										 <li><a href="/accounts/register"><i class="icon-edit"></i>注册</a></li>
+                                                                                          
+                                                                                               </ul>
+                                                                                        </div>
+                                                        
+									   </div>
+                                   </form>
+                    	{% endblock login %}
+                              {% endif %}
+            
+          </ul>
+        
+        </div><!-- /.nav-collapse -->
+      </div>
+    </div><!-- /navbar-inner -->
+  </div><!-- /navbar -->
+        
+	   
+  
+  <div class="container">
+{% block buy %}
+{% endblock buy %}
+
+  {% block content %}
+  {% endblock content %}
+   </div>
+
+</body>
+</html>

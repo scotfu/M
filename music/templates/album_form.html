@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block title %}
+添加新专辑{% endblock title %}
+{% block content %}
+
+<div class="span8">
+<form class="well form-horizontal" method="post" action="/album/add/">
+{% csrf_token %}
+{% for field in form %}
+       <div class="fieldWrapper">
+           {{ field.errors }}
+           {{ field.label_tag }}
+       </div>
+   {% endfor %}
+
+
+<fieldset>
+<div class="control-group error">
+<label class="control-label" for="title">Title:</label>
+<div class="controls">
+<input type="text" name="title" class="span3" placeholder="Title">
+<span class="help-inline">{{form.title.errors}}</span>
+</div>
+</div>
+
+
+
+
+<div class="control-group error">
+<label class="control-label" for="pic">Pic:</label>
+<div class="controls">
+<input type="file" name="pic" class="span3" placeholder="pic">
+<span class="help-inline">{{form.pic.errors}}</span>
+</div>
+</div>
+
+
+<div class="control-group error">
+<label class="control-label" for="price">Price:</label>
+<div class="controls">
+<input type="text" name="price" class="span3" placeholder="Price">
+<span class="help-inline">{{form.price.errors}}</span>
+</div>
+</div>
+
+<div class="control-group error">
+<label class="control-label" for="amount">Amount:</label>
+<div class="controls">
+<input type="text" name="amount" class="span3" placeholder="Amount">
+<span class="help-inline">{{form.amount.errors}}</span>
+</div>
+</div>
+
+<div class="control-group error">
+<label class="control-label" for="singer">Singer:</label>
+<div class="controls">
+<input type="text" class="span3" name="singer" placeholder="Singer">
+<span class="help-inline">{{form.singer.errors}}</span>
+</div>
+</div>
+
+<div class="control-group error">
+<label class="control-label" for="year">Year:</label>
+<div class="controls">
+<input type="text" class="span3" name="year" placeholder="Year">
+<span class="help-inline">{{form.year.errors}}</span>
+</div>
+</div>
+
+
+<div class="control-group error">
+<label class="control-label" for="ISBN">ISBN:</label>
+<div class="controls">
+<input type="text" class="span3" name="isbn" placeholder="ISBN">
+<span class="help-inline">{{form.isbn.errors}}</span>
+</div>
+</div>
+
+
+<div class="control-group error">
+<label class="control-label" for="company">Company:</label>
+<div class="controls">
+<input type="text" class="span3" name="company" placeholder="Company">
+<span class="help-inline">{{form.company.errors}}</span>
+</div>
+</div>
+
+<div class="control-group error">
+<label class="control-label" for="genre">Genre:</label>
+<div class="controls">
+{{form.genre}}
+</div>
+</div>
+
+<div class="control-group error">
+<label class="control-label" for="store">Store:</label>
+<div class="controls">
+{{form.store}}
+</div>
+</div>
+
+
+<div class="control-group">
+  <label class="control-label" for="textarea">Desciption</label>
+  <div class="controls">
+    <textarea class="input-xlarge" name="description"  rows="3"></textarea>
+  </div>
+</div>
+
+
+</fieldset>
+          <div class="form-actions">
+            <button type="submit" class="btn">确认</button>
+            <button class="btn">取消</button>
+          </div>
+</form>
+</div>
+{% endblock content %}
