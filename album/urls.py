@@ -7,6 +7,6 @@ urlpatterns = patterns('album.views',
     url(r'^$', 'indexview'),
     url(r'^(?P<album_id>\d+)/$', albumdetailview),
     url(r'^genre/(?P<genre_name>\w+)/$', 'genre'),
-    url(r'^search/(?P<key_word>\w+)/$', 'search'),
+    url(r'^search/(?P<key_word>.+)/$', 'search'),
     url(r'^search/$', 'search'),
     )
