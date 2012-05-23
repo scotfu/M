@@ -40,9 +40,16 @@
     </a>
 </div>
 <div class="span5">
+
 <h3>专辑：{{ item.album.title }}</h3>
 <h4>单价：{{ item.album.price}}</h4>
 <h4>数量：{{item.amount}}</h4>
+</div>
+<div class="span3">
+<a href="/cart/cart_add/{{item.album.id}}" class="btn  btn-success" ><i class="icon-plus-sign icon-white"></i></a>
+<a href ="/cart/delete/{{item.album.id}}" class="btn  btn-warning"><i class="icon-minus-sign icon-white"></i></a>
+<a href ="/cart/delete_album/{{item.album.id}}" class="btn  btn-danger"><i class="icon-remove-sign icon-white"></i></a>
+
 </div>
 </div>
 

@@ -115,13 +115,54 @@ def delete_one_by_id(request, album_id):
             item.save()
         except:
             raise Http404
+        if item.amount==0:
+            item.delete()
     else:
         if cart[delete_album]>0:
             cart[delete_album]-=1
+            if cart[delete_album]==0:
+                del cart[delete_album]
             request.session['cart']=cart
         else:
-            return HttpResponse('Delete Failed less than 1')
-    return HttpResponse('Delete Success')
+            return HttpResponse('Error')
+    return HttpResponseRedirect('/cart/')
+
+
+def add_one_by_id(request, album_id):
+    add_album=Album.objects.get(pk=album_id)
+    cart=getCart(request)
+    if '_auth_user_id' in request.session:
+        try:
+            item=cart.cartitem_set.get(album=add_album)
+            item.amount+=1
+            item.save()
+        except:
+            raise Http404
+    else:
+        if cart[add_album]>0:
+            cart[add_album]+=1
+            request.session['cart']=cart
+        else:
+            return HttpResponse('Error')
+    return HttpResponseRedirect('/cart/')
+
+
+def delete_by_id(request, album_id):
+    delete_album=Album.objects.get(pk=album_id)
+    cart=getCart(request)
+    if '_auth_user_id' in request.session:
+        try:
+            item=cart.cartitem_set.get(album=delete_album)
+            item.delete()
+        except:
+            raise Http404
+    else:
+        try:
+            del cart[delete_album]
+            request.session['cart']=cart
+        except:
+            return HttpResponse('Error')
+    return HttpResponseRedirect('/cart/')
 
 
 def clean(request):
