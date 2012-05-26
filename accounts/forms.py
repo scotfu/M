@@ -57,7 +57,6 @@ class RegisterForm(forms.Form):
     def clean_confirm_password(self):
         if 'password' in self.cleaned_data:
             password=self.cleaned_data['password']
-            print self.cleaned_data
             if 'confirm_password' in self.cleaned_data:
                 confirm_password=self.cleaned_data['confirm_password']
                 if password == confirm_password:

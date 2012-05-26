@@ -33,12 +33,12 @@ def initlog():
 mylogging=initlog()
 
 
-def basesearch(type, word, start=1, length=50):
-    data=urllib.urlopen(search_url+'?'+type+'='+word+'&'+apikey
+def basesearch(s_type, word, start=1, length=50):
+    data=urllib.urlopen(search_url+'?'+s_type+'='+word+'&'+apikey
                           +'&'+default_data_type
                           +'&start-index='+str(start)
                           +'&max-results='+str(length))
-    print search_url+'?'+type+'='+word+'&'+apikey+'&'+default_data_type+'&start-index='+str(start) +'&max-results='+str(length)
+    print search_url+'?'+s_type+'='+word+'&'+apikey+'&'+default_data_type+'&start-index='+str(start) +'&max-results='+str(length)
 
     json_data=json.load(data)
     mylogging.info('读取搜索结果成功')
@@ -60,11 +60,11 @@ def basesearch(type, word, start=1, length=50):
 
 
 def search_by_key_word(key_word='Pop', start=1, result_length=50):
-    basesearch(type='q', word=key_word, start=start, length=result_length)
+    basesearch(s_type='q', word=key_word, start=start, length=result_length)
 
 
 def search_by_tag(tag='Pop', start=1, result_length=50):
-    basesearch(type='tag', word=tag, start=start, length=result_length)
+    basesearch(s_type='tag', word=tag, start=start, length=result_length)
 
 
 def get_from_db_attribute(json_data, name):

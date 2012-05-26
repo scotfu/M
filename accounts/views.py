@@ -85,7 +85,6 @@ def register(request):
         return HttpResponseRedirect('/')
     if request.method =='POST':
         form=RegisterForm(request.POST)
-        print form
         if form.is_valid():
             user=User.objects.create_user(
             username=form.cleaned_data['username'],
