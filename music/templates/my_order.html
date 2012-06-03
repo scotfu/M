@@ -6,8 +6,10 @@
 <div class="page-header">
   <h2>订单历史</h2>
 </div>
+
 {% for order in order_set %}
-<div class="well span10">
+<div class="well span11">
+
   <div class="span2">
   <label>时间：{{order.create_date|date:"Y/m/d-h:i:s"}}</label>
   <label>地址：{{order.address}}</label>
@@ -31,14 +33,19 @@
 
     <li class="myspan1">
     <a href="/album/{{orderdetail.album.id}}" class="thumbnail">
-      <img src="/static/{{orderdetail.album.pic}}" alt="">
+      <img src="/media/{{orderdetail.album.pic}}" alt="">
     ￥:{{orderdetail.per_price}} *{{orderdetail.amount}} 
   
     </a>
 	</li>
   {% endfor %}
-     </ul>
+     </ul> 
 	</div>
+    {% if order.finished %}
+        <div class="span2 pull-left"></div>
+         <a class="btn btn-large btn-success"  href="/order/{{ order.id }}/download"><i class="icon-download-alt icon-white"></i>下载</a>
+        {% endif %}
+    
   </div>
 {% endfor %}
 

@@ -12,6 +12,13 @@ from address.models import Address
 from django.template import RequestContext
 import datetime
 from cart.views import getCart, cleanCart
+import zipfile
+import  sys
+import os
+
+
+reload(sys)
+sys.setdefaultencoding("utf-8")
 
 
 @login_required
@@ -70,3 +77,29 @@ def finished(request, order_id):
     order.save()
     print order.finished_date
     return HttpResponse('Finished Success')
+
+
+file_dir=os.path.dirname(os.path.dirname(__file__))
+download_dir=os.path.join(file_dir, 'music', 'media', 'download').replace('\\', '/')
+
+
+def download(request, order_id):
+    order = Order.objects.get(pk=order_id)
+    if request.user==order.user:
+        if order.finished:
+            file_name=unicode(order.id)+'.rar'
+            f_zip = zipfile.ZipFile(os.path.join(download_dir, file_name).replace('\\', '/'), 'w', zipfile.ZIP_STORED)
+            for orderdetail in order.orderdetail_set.all():
+                album_title=unicode(orderdetail.album.title)
+                album=os.path.join(download_dir, album_title+'.mp3').replace('\\', '/')
+                f=open(album, 'w')
+                f.close()
+                f_zip.write(album, album_title+'/'+album_title+'.mp3')
+                os.remove(album)
+            f_zip.close()
+            #return HttpResponse()
+            return HttpResponseRedirect('/media/download/'+file_name)
+        else:
+            return Http404()
+    else:
+        Http404()

@@ -1,4 +1,4 @@
-﻿#! /usr/bin/env python
+#! /usr/bin/env python
 #coding=utf-8
 from django.http import HttpResponseRedirect, Http404
 from accounts.forms import CommentForm

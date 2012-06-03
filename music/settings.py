@@ -1,7 +1,8 @@
 # Django settings for music project.
 import os
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+
+DEBUG=True
+
 PROJECT_DIR=os.path.dirname(__file__).replace('\\', '/')
 ADMINS = (
      ('Scot', 'scotfu@gmail.com'),
@@ -47,7 +48,9 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = 'C:/django_1/music/music/media/'
+MEDIA_ROOT = PROJECT_DIR+'/media/'
+
+DOWNLOAD_ROOT = PROJECT_DIR+'/media/download'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -72,7 +75,7 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 STATICFILES_DIRS = (
     PROJECT_DIR+'/static',
-    PROJECT_DIR+'/media/',
+    # 
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -134,7 +137,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'django.contrib.staticfiles',
+    #'django.contrib.staticfiles',
     'album',
     'comment',
     'address',
