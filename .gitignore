@@ -10,4 +10,5 @@ target
 .settings
 .classpath
 .factorypath
+.idea
 
