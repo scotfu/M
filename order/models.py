@@ -13,6 +13,7 @@ class Order(models.Model):
     finished=models.BooleanField('完成', False)
     finished_date=models.DateTimeField('完成日期', null=True)
     price=models.DecimalField('总价', max_digits=5, decimal_places=2)
+    is_only_digital=models.BooleanField(default=True,verbose_name='仅数字版')
 
     class Meta:
         verbose_name_plural = "订单"

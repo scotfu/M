@@ -6,7 +6,7 @@
   <h2>注册新用户</h2>
 </div>
 
-<form class="form-horizontal span6" method="post" action="/accounts/register/">
+<form class="form-horizontal span8" method="post" action="/accounts/register/">
 {% csrf_token %}
 <fieldset>
        {% for field in form.visible_fields %}

@@ -112,4 +112,3 @@ def my_pageination(request, object_list):
 # If page is out of range (e.g. 9999), deliver last page of results.
         objects = paginator.page(paginator.num_pages)
     return objects
-

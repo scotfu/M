@@ -5,7 +5,7 @@ from album.models import Album, Genre
 
 
 class AlbumAdmin(admin.ModelAdmin):
-    list_filter = ('price', 'singer','amount')
+    list_filter = ('price', 'singer','amount','is_digital')
     list_display = ('id','title','singer','price','amount','active')
     search_fields = ['singer','title']
     list_editable=('price','amount')
@@ -16,10 +16,11 @@ class AlbumAdmin(admin.ModelAdmin):
         ('More options',{
             'classes':('collapse',),
             'fields':('description','pic','year','singer',
-                      'genre','company','isbn','store')
+                      'genre','company','isbn','is_digital','store')
             }),
 
         )
+
 
 class GenreAdmin(admin.ModelAdmin):
     list_display = ('id','name')

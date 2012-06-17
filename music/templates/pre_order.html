@@ -9,8 +9,10 @@
         $("button.btn").removeClass("btn-success disabled");
         var oi = obj.value;
         address_id=oi;
-        url=$("a#order").attr("href").substr(0,8)
-        url=url+"address_id="+address_id
+        url="/order/?"
+        //alert(url)
+        $("a#order").removeClass("disabled");
+        url=url+"address_id="+address_id;
         //alert(url)
         $("a#order").attr("href",url);
         $(obj).addClass("btn-success disabled");
@@ -24,8 +26,9 @@
 <div class="span5">
 
 <div class="btn-group">
-	<a class="btn btn-large btn-success pull-left {% if not address_set %}disabled"{% else %}" href="/order/?"{% endif %}
-     id="order" ><i class="icon-shopping-cart icon-white"></i>支付</a>
+	<a class="btn btn-large btn-success pull-left 
+    {% if not is_only_digital %} disabled "{% else %}" href="/order" {% endif %} id="order" >
+    <i class="icon-shopping-cart icon-white"></i>支付</a>
 <a class="btn btn-large btn-info pull-left" id="cart" href="/cart/"><i class="icon-arrow-left icon-white"></i>返回</a>
 
 </div>
@@ -36,7 +39,7 @@
 <div class="page-header">
 <h3>总价为：{{price}} 元</h3>
 </div>
-
+{% if not is_only_digital %}
 
 <div class="page-header">
   <h3>选择收货地址</h3>
@@ -70,14 +73,15 @@
 </table>
 {% else %}
 <div class="page-header span11">
-  <h4>您还没有添加地址信息<a class="btn btn-info btn-large" href="/address/add/"><i class="icon-plus icon-white"></i>添加</a></h4>
-
+<h4>您还没有添加地址信息
+<a class="btn btn-success btn-large" href="/address/add/"><i class="icon-plus icon-white"></i>添加</a></h4>
+</h4>
 
 </div>
 {% endif %}
 
 </div>
-
+{% endif %}
 
 
 <div class="page-header">
@@ -95,7 +99,10 @@
     </a>
 </div>
 <div class="span5">
-<h3>专辑：{{ item.album.title }}</h3>
+<h3>专辑：{{ item.album.title }}{% if item.album.is_digital %}
+ (数字版)
+{% endif %}
+</h3>
 <h4>单价：{{ item.album.price}}</h4>
 <h4>数量：{{item.amount}}</h4>
 </div>

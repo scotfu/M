@@ -175,6 +175,8 @@ def pre_order(request):
     cart=getCart(request)
     item_set=cart.cartitem_set.all()
     price=0
+    is_only_digital=only_digital(item_set)
+    print is_only_digital
     for item in item_set:
         items_price=item.get_items_price()
         price+=items_price
@@ -182,5 +184,14 @@ def pre_order(request):
     return render_to_response('pre_order.html',
         {'item_set': item_set,
         'price': price,
-        'address_set': address_set},
+        'address_set': address_set,
+        'is_only_digital': is_only_digital},
         context_instance=RequestContext(request))
+
+
+def only_digital(item_set):
+    for item in item_set:
+        if not item.album.is_digital:
+            return False
+    else:
+        return True

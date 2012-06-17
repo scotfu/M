@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 class Address(models.Model):
-    postal_code=models.CharField(max_length=10)
+    postal_code=models.BigIntegerField(max_length=10)
     address=models.CharField(max_length=126)
     name=models.CharField(max_length=30)
     user=models.ForeignKey(User)

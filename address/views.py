@@ -37,7 +37,7 @@ def save(request, address_id=None):
                     'postal_code': address.postal_code})
         else:
             form=AddressForm()
-        return render_to_response('address_form.html', {
+    return render_to_response('address_form.html', {
             'form': form},
              context_instance=RequestContext(request))
 

@@ -7,7 +7,7 @@
   <h2>我的地址</h2>
 </div>
 
-<form method="post" class="form-horizontal span5" action="/address/save/">{% csrf_token %}
+<form method="post" class="form-horizontal span6" action="/address/save/">{% csrf_token %}
 
 
 {% for hidden in form.hidden_fields %}
@@ -15,8 +15,12 @@
 {% endfor %}
   <fieldset>
         {% for field in form.visible_fields %}
-       
-        <div class="control-group">
+  {% if field.errors %}
+   <div class="control-group error">
+{% else %}
+ <div class="control-group">
+{% endif %}
+
         <label class="control-label" for="{{ field.name}}">{{ field.label}}</label> 
         <div class="controls">
         {# <input type="text" name="{{field.name}}" class="span3" placeholder="{{ field.label }}"> #}

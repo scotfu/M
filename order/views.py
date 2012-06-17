@@ -1,20 +1,17 @@
 #! /usr/bin/env python
 #coding=utf-8
-#url(r'^$', 'order'),
-#url(r'^my_order/$', 'my_order'),
-#url(r'^my_order/(?P<my_order_id>\d+)/$', 'myorderdetail'),
-#url(r'^(?P<order_id>\d+)/finished/$', 'finished'),
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from order.models import Order, OrderDetail
 from address.models import Address
 from django.template import RequestContext
-import datetime
 from cart.views import getCart, cleanCart
 import zipfile
 import  sys
 import os
+import datetime
+from datetime import *
 
 
 reload(sys)
@@ -26,14 +23,22 @@ def order(request):
     cart=getCart(request)
     user=request.user
     item_set=cart.cartitem_set.all()
-    try:
-        address=Address.objects.filter(user=user,
-            pk=request.GET['address_id'])[0]
-    except:
-        address=Address.objects.filter(user=user)[0]
+#检查contains_digital
+    is_only_digital=only_digital(item_set)
     if item_set.count()>0:
         price=0
-        order=Order.objects.create(user=user, address=address, price=price)
+        if is_only_digital:
+            order=Order.objects.create(user=user,
+                 is_only_digital=is_only_digital, address_id=0,
+                 price=price, finished=True, finished_date=datetime.now())
+        else:
+            try:
+                address=Address.objects.filter(user=user,
+                    pk=request.GET['address_id'])[0]
+            except:
+                address=Address.objects.filter(user=user)[0]
+            order=Order.objects.create(user=user, address=address,
+            is_only_digital=is_only_digital, price=price)
 # 对接购物车和订单
 # 检查数量
         for item in item_set:
@@ -86,20 +91,25 @@ download_dir=os.path.join(file_dir, 'music', 'media', 'download').replace('\\', 
 def download(request, order_id):
     order = Order.objects.get(pk=order_id)
     if request.user==order.user:
-        if order.finished:
-            file_name=unicode(order.id)+'.rar'
-            f_zip = zipfile.ZipFile(os.path.join(download_dir, file_name).replace('\\', '/'), 'w', zipfile.ZIP_STORED)
-            for orderdetail in order.orderdetail_set.all():
-                album_title=unicode(orderdetail.album.title)
-                album=os.path.join(download_dir, album_title+'.mp3').replace('\\', '/')
-                f=open(album, 'w')
-                f.close()
-                f_zip.write(album, album_title+'/'+album_title+'.mp3')
-                os.remove(album)
-            f_zip.close()
-            #return HttpResponse()
-            return HttpResponseRedirect('/media/download/'+file_name)
-        else:
-            return Http404()
+        file_name=unicode(order.id)+'.rar'
+        f_zip = zipfile.ZipFile(os.path.join(download_dir, file_name).replace('\\', '/'), 'w', zipfile.ZIP_STORED)
+        for orderdetail in order.orderdetail_set.all():
+            album_title=unicode(orderdetail.album.title)
+            album=os.path.join(download_dir, album_title+'.mp3').replace('\\', '/')
+            f=open(album, 'w')
+            f.close()
+            f_zip.write(album, album_title+'/'+album_title+'.mp3')
+            os.remove(album)
+        f_zip.close()
+        #return HttpResponse()
+        return HttpResponseRedirect('/media/download/'+file_name)
     else:
         Http404()
+
+
+def only_digital(item_set):
+    for item in item_set:
+        if not item.album.is_digital:
+            return False
+    else:
+        return True

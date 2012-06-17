@@ -30,7 +30,11 @@
 	</script>
 	
 <header class="jumbotron subhead page-header" id="overview">
-  <h2>{{ album.title }}</h2>
+  <h2>{{ album.title }}
+{% if album.is_digital %}
+(数字版)
+{% endif %}
+</h2>
  
 </header>
 
@@ -45,14 +49,18 @@
 <h4>歌手:{{ album.singer }}</h4>
 <h4>年限:{{ album.year }}</h4>
 <h4>价格{{ album.price }}</h4>
+
 </div>
 
-<div id="addtocart"class="well span2 pull-right">
+<div id="addtocart"class=" span2 pull-right">
+{% if not album.is_digital %}
+数量：
 <select name="amount" id="amount" class="span1" onchange="Change(this)">
 <option value="1" selected>1</option>
 <option value="2">2</option>
 <option value="3">3</option>
 </select>
+{% endif %}
 <a class="btn btn-large btn-success" id="cart" href="/cart/add/{{album.id}}/?"><i class="icon-shopping-cart icon-white"></i> 加入购物车</a>
 </div>
 </div>

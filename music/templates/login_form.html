@@ -87,7 +87,7 @@
   <h2>登陆</h2>
 </div>
 
-<form class="form-horizontal span5" method="post" action="/accounts/login/">
+<form class="form-horizontal span10" method="post" action="/accounts/login/">
 {% csrf_token %}
 <fieldset>
        {% for field in form.visible_fields %}
@@ -107,7 +107,7 @@
 <input type="hidden" name="next" value="{{next}}">
 </fieldset>
           <div class="form-actions">
-            <button type="submit" class="btn btn-primary">登陆</button>
+            <button type="submit" class="btn btn-primary">登录</button>
                <a  class="btn" href="/accounts/register/">注册</a>
           </div>
 </form>

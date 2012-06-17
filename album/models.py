@@ -21,6 +21,7 @@ class Album(models.Model):
     create_date=models.DateField(auto_now_add=True)
     modify_date=models.DateField(auto_now=True)
     store=models.ForeignKey(Store, blank=True)
+    is_digital=models.BooleanField(default=True,verbose_name='数字版')
 
     def __unicode__(self):
         return self.title
