@@ -1,22 +1,22 @@
 {% extends "base.html" %}
 {% block title %}
-我的购物车
+My cart
 {% endblock title %}
 {% block content %}
 
 <div class="page-header">
-<div class="row"><h2 class="span2">我的购物车</h2>
+<div class="row"><h2 class="span2">My cart</h2>
 
 <div class="span5">
 {% if  item_set %}
 <div class="btn-group" data-toggle="buttons-checkbox">
-<a class="btn btn-large btn-success pull-left" id="cart" href="/cart/pre_order/"><i class="icon-shopping-cart icon-white"></i>结算</a>
-<a class="btn btn-large btn-danger pull-left" id="cart" href="/cart/clean/"><i class="icon-trash icon-white"></i> 清空</a>
-</div>
+<a class="btn btn-large btn-success pull-left" id="cart" href="/cart/pre_order/"><i class="icon-shopping-cart icon-white"></i>Check out</a>
+<a class="btn btn-large btn-danger pull-left" id="cart" href="/cart/clean/"><i class="icon-trash icon-white"></i> Clear</a>
+</div> 
 {% else %}
 
 
-<a class="btn btn-large btn-info pull-left" id="cart" href="/album/"><i class="icon-shopping-cart icon-white"></i>继续购物</a>
+<a class="btn btn-large btn-info pull-left" id="cart" href="/album/"><i class="icon-shopping-cart icon-white"></i>Continue shopping</a>
 {% endif %}
 </div>
 
@@ -41,9 +41,9 @@
 </div>
 <div class="span5">
 
-<h3>专辑：{{ item.album.title }}{% if  item.album.is_digital %}(数字版){% endif %}</h3>
-<h4>单价：{{ item.album.price}}</h4>
-<h4>数量：{{item.amount}}</h4>
+<h3>Title：{{ item.album.title }}{% if  item.album.is_digital %}(digital edition){% endif %}</h3>
+<h4>Price：{{ item.album.price}}</h4>
+<h4>Amount：{{item.amount}}</h4>
 </div>
 
 <div class="span3">
@@ -59,7 +59,7 @@
 
 {% else %}
 
-暂时为空，去选几张专辑吧
+Your cart is empty
 {% endif %}
 
 {% endblock content %}

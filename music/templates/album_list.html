@@ -4,7 +4,7 @@
 
 {% if not object_list %}
 <div class="alert alert-info span11" align="center">
-没有任何相关专辑
+No information
 </div>
 {% endif %}
 
@@ -13,7 +13,7 @@
 {% block content %}  
 {% block mytitle %} 
 <header class="jumbotron subhead page-header" id="overview">
-    <h2>专辑列表</h2>
+    <h2>Album list</h2>
  
 </header>
 
@@ -40,9 +40,9 @@
 <div class="pagination pagination-centered">
   <ul>
     {% if object_list.has_previous %}
-    <li>  <a href="?page={{ object_list.previous_page_number }}">前一页</a></li>
+    <li>  <a href="?page={{ object_list.previous_page_number }}">Previous</a></li>
     {% else %}
-    <li class="active">  <a>前一页</a></li>
+    <li class="active">  <a>Previous</a></li>
     {% endif %}
     
     
@@ -50,9 +50,9 @@
       <a> {{ object_list.number }} / {{ object_list.paginator.num_pages }}</a>
     </li>
        {% if object_list.has_next %}
-          <li> <a href="?page={{ object_list.next_page_number }}">后一页</a></li>
+          <li> <a href="?page={{ object_list.next_page_number }}">Next</a></li>
         {% else %}
-         <li class="active"> <a>后一页</a></li>
+         <li class="active"> <a>Next</a></li>
        {% endif %}
   </ul>
 </div>

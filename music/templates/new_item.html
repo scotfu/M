@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-添加成功
+Success
 {% endblock title %}
 {% block login %}
 {% endblock login%}
@@ -12,18 +12,18 @@
     </a>
 </div>
 <div class ="span5">
-<h3>专辑：{{item.album}}</h3>
-<h4>单价：{{item.album.price}}</h4>
-<h4>数量：{{amount}}</h4>
+<h3>Title：{{item.album}}</h3>
+<h4>Price：{{item.album.price}}</h4>
+<h4>Amount：{{amount}}</h4>
 <div class="alert alert-info">
-   已加入到您的购物车
+   1 item added to Cart
 </div>
      <a class="btn btn-success btn-large" href="/cart/">
-      查看购物车
+      Edit your cart 
     </a>
     
 	    <a class="btn btn-info btn-large" href="/">
-      继续购物
+      Continue shopping
     </a>
 </div>
 {% endblock content %}

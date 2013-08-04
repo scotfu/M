@@ -1,23 +1,23 @@
 {% extends "base.html" %}
 {% block title %}
-我的订单
+My order
 {% endblock title %}
 {% block content %}
 <div class="page-header">
-  <h2>订单历史</h2>
+  <h2>Order history</h2>
 </div>
 
 {% for order in order_set %}
 <div class="well span11">
 
   <div class="span2">
-  <label>时间：{{order.create_date|date:"Y/m/d-h:i:s"}}</label>
+  <label>Time：{{order.create_date|date:"Y/m/d-h:i:s"}}</label>
 {% if not order.is_only_digital %}
-<label>地址：{{order.address}}</label>
-<label>收件人:{{order.address.name}}</label>
+<label>Address：{{order.address}}</label>
+<label>Name:{{order.address.name}}</label>
 {% endif %}
-  总价：{{ order.price}}
-  <label>状态:</label>
+  Total price：{{ order.price}}
+  <label>status:</label>
   <div class="progress progress-striped
      active">
   <div class="bar" style="width:
@@ -44,7 +44,7 @@
 	</div>
  
         <div class="span2 pull-left"></div>
-         <a class="btn btn-large btn-success"  href="/order/{{ order.id }}/download"><i class="icon-download-alt icon-white"></i>下载</a>
+         <a class="btn btn-large btn-success"  href="/order/{{ order.id }}/download"><i class="icon-download-alt icon-white"></i>Download</a>
 
     
   </div>
