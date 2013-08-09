@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block title %}
-地址簿
+Adress
 {% endblock title %}
 
 {% block content %}
 <div class="page-header">
-<div class="row"><h2 class="span2">我的地址簿</h2>
+<div class="row"><h2 class="span2">My address</h2>
 
 <div class="span5">
 
@@ -22,10 +22,10 @@
 <table class="table-striped span10 table-condensed table-bordered">
   <thead>
     <tr>
-      <th>姓名</th>
-      <th>地址</th>
-      <th>邮编</th>
-      <th>管理</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Postal Code</th>
+      <th>Manage</th>
     </tr>
   </thead>
   <tbody>
@@ -34,13 +34,13 @@
       <td>{{ address.name }}</td>
       <td>{{ address.address }}</td>
       <td>{{ address.postal_code }}</td>
-      <td align="center"><a class="btn" href="/address/modify/{{address.id}}/"><i class="icon-edit"></i>修改</a></td>
+      <td align="center"><a class="btn" href="/address/modify/{{address.id}}/"><i class="icon-edit"></i>Modify</a></td>
     </tr>
    {% endfor %}
   </tbody>
 </table>
 {% else %}
-无地址，请<a href="/address/add/">添加</a>
+You do not have a address now, please<a href="/address/add/"> add</a>
 {% endif %}
 </div>
 {% endblock %}

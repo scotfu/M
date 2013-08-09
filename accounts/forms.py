@@ -10,8 +10,8 @@ import re
 
 class LoginForm(forms.Form):
 
-    username=forms.CharField(max_length=20, label='用户名')
-    password=forms.CharField(widget= forms.PasswordInput(), label='密码')
+    username=forms.CharField(max_length=20, label='Username')
+    password=forms.CharField(widget= forms.PasswordInput(), label='Password')
 
     def clean_username(self):
         username=self.cleaned_data['username']
@@ -22,18 +22,18 @@ class LoginForm(forms.Form):
         user = authenticate(username=self.cleaned_data['username'],
         password=self.cleaned_data['password'])
         if user is None:
-            raise forms.ValidationError('用户名或者密码错误')
+            raise forms.ValidationError('Wrong password')
         return password
 
 
 class RegisterForm(forms.Form):
 
     email=forms.EmailField(label='Email')
-    username=forms.CharField(max_length=20, label='用户名')
-    password=forms.CharField(widget=forms.PasswordInput(), label='密码')
+    username=forms.CharField(max_length=20, label='Username')
+    password=forms.CharField(widget=forms.PasswordInput(), label='Password')
     confirm_password=forms.CharField(widget=forms.PasswordInput(),
-                            label='确认密码')
-    nickname=forms.CharField(max_length=20, label='昵称')
+                            label='Confirm Password')
+    nickname=forms.CharField(max_length=20, label='Nickname')
 
     def clean_username(self):
         username=self.cleaned_data['username']
@@ -84,10 +84,10 @@ class CommentForm(forms.Form):
 
 class AccountForm(forms.Form):
 #    user_id=forms.IntegerField(widget=forms.HiddenInput())
-    nickname=forms.CharField(max_length=20, label='昵称')
-    password=forms.CharField(widget=forms.PasswordInput(), label='密码')
+    nickname=forms.CharField(max_length=20, label='Nickname')
+    password=forms.CharField(widget=forms.PasswordInput(), label='password')
     confirm_password=forms.CharField(widget=forms.PasswordInput(),
-                label='确认密码')
+                label='Confirm password')
 
     def clean_confirm_password(self):
         if 'password' in self.cleaned_data:
@@ -104,9 +104,9 @@ class AccountForm(forms.Form):
 class AddressForm(forms.Form):
     address_id=forms.IntegerField(required=False, label='id',
         widget=forms.HiddenInput())
-    name=forms.CharField(max_length=20, label='姓名')
-    address=forms.CharField(max_length=512, label='地址')
-    postal_code=forms.CharField(max_length=20, label='邮编')
+    name=forms.CharField(max_length=20, label='Name')
+    address=forms.CharField(max_length=512, label='Address')
+    postal_code=forms.CharField(max_length=20, label='Postal code')
 
     def clean_id(self):
         pass

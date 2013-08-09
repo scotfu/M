@@ -59,7 +59,7 @@
             <div class="navbar-search pull-left">
              <input type="text" id="search" class="search-query span2"/>
            </div>
-              <button class="btn"  href="/album/search/" onClick="myclick(search.value)">搜索</button>
+              <button class="btn"  href="/album/search/" onClick="myclick(search.value)">Search</button>
             </ul>
       
             
@@ -73,7 +73,7 @@
 	    <section >
         {% if form.errors %}
         <div class="alert alert-error" align="center">
-        用户名或者密码错误
+        Wrong information
         {% endif %}
         
         </div>
@@ -84,7 +84,7 @@
   <div class="container">
 
 <div class="page-header">
-  <h2>登陆</h2>
+  <h2>Login</h2>
 </div>
 
 <form class="form-horizontal span10" method="post" action="/accounts/login/">
@@ -107,8 +107,8 @@
 <input type="hidden" name="next" value="{{next}}">
 </fieldset>
           <div class="form-actions">
-            <button type="submit" class="btn btn-primary">登录</button>
-               <a  class="btn" href="/accounts/register/">注册</a>
+            <button type="submit" class="btn btn-primary">Login</button>
+               <a  class="btn" href="/accounts/register/">Sign up</a>
           </div>
 </form>
    </div>

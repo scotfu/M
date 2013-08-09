@@ -8,7 +8,7 @@
 
 {% if buy %}
 <div class="alert alert-info" align="center">
-曾经购买过
+You purchased this item before.
 </div>
 {% endif %}
 	
@@ -32,7 +32,7 @@
 <header class="jumbotron subhead page-header" id="overview">
   <h2>{{ album.title }}
 {% if album.is_digital %}
-(数字版)
+(digital edition)
 {% endif %}
 </h2>
  
@@ -45,36 +45,36 @@
     </a>
 </div>
 <div class="span5">
-<h4>专辑名:{{ album.title }}</h4>
-<h4>歌手:{{ album.singer }}</h4>
-<h4>年限:{{ album.year }}</h4>
-<h4>价格{{ album.price }}</h4>
+<h4>Title:{{ album.title }}</h4>
+<h4>Singer:{{ album.singer }}</h4>
+<h4>Year:{{ album.year }}</h4>
+<h4>Price{{ album.price }}</h4>
 
 </div>
 
 <div id="addtocart"class=" span2 pull-right">
 {% if not album.is_digital %}
-数量：
+Amount：
 <select name="amount" id="amount" class="span1" onchange="Change(this)">
 <option value="1" selected>1</option>
 <option value="2">2</option>
 <option value="3">3</option>
 </select>
 {% endif %}
-<a class="btn btn-large btn-success" id="cart" href="/cart/add/{{album.id}}/?"><i class="icon-shopping-cart icon-white"></i> 加入购物车</a>
+<a class="btn btn-large btn-success" id="cart" href="/cart/add/{{album.id}}/?"><i class="icon-shopping-cart icon-white"></i>Add to cart</a>
 </div>
 </div>
 
 <div id="desciption">
 <div class="page-header">
-  <h3>简介</h3>
+  <h3>Description</h3>
 </div>
 
 {{ album.description|safe}}
 
 
 <div class="page-header">
-  <h3>专辑评价</h3>
+  <h3>Comments</h3>
 </div>
 {% if album.comment_set.all %}
 {% for comment in album.comment_set.all %}
@@ -83,7 +83,7 @@
   <h4> <i class="icon-comment"></i>{{comment.title}} </h4>
 {{comment.create_time}}<br/>
 {{comment.content|safe}}<br/>
-来自于:{{comment.user.username}}
+from:{{comment.user.username}}
 
 </div>
 
@@ -91,34 +91,34 @@
 {% endfor comment_list %}
 {% else %}
 <div class="page-header">
-  <h4>暂无评价</h4>
+  <h4>No comments</h4>
 </div>
 
 {% endif %}
 
 <div id ="addcomment">
 <div class="page-header">
- <h3> <i class="icon-plus"></i>添加评价</h3> 
+ <h3> <i class="icon-plus"></i>Add your comment</h3> 
 </div>
 
 <form id="" method="post" action="/comment/add/" class="horizontal">{% csrf_token %}
 <fieldset>
 <input type="hidden" name="album" value="{{album.id}}" />
     <div class="control-group">
-      <label class="control-label" for="input01">标题</label>
+      <label class="control-label" for="input01">Title</label>
       <div class="controls">
         <input type="text" class="input-xlarge" id="input01" name="title">
       </div>
     </div>
           <div class="control-group">
-            <label class="control-label" for="textarea">内容(支持换行操作&ltbr/>)</label>
+            <label class="control-label" for="textarea">Content(support new line , use&ltbr/>)</label>
             <div class="controls">
               <textarea class="input-xlarge" id="textarea" rows="3" name="content"></textarea>
             </div>
           </div>
   </fieldset>
 
-<button type="submit" class="btn">提交</button>
+<button type="submit" class="btn">Confirm</button>
 
 </form>
 

@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block title %}
-我的地址{% endblock title %}
+My address{% endblock title %}
 {% block content %}
 
 <div class="page-header">
-  <h2>我的地址</h2>
+  <h2>My address</h2>
 </div>
 
 <form method="post" class="form-horizontal span6" action="/address/save/">{% csrf_token %}
@@ -32,8 +32,8 @@
  {% endfor %}
        </fieldset>
           <div class="form-actions">
-            <button type="submit" class="btn btn-primary">确认</button>
-            <a class="btn" href="/address/">取消</a>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+            <a class="btn" href="/address/">Cancel</a>
           </div>
 
 </form>
