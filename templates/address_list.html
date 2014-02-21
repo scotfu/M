@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}
+Adress
+{% endblock title %}
+
+{% block content %}
+<div class="page-header">
+<div class="row"><h2 class="span2">My address</h2>
+
+<div class="span5">
+
+<div class="btn-group" data-toggle="buttons-checkbox">
+<a class="btn btn-large btn-primary pull-left" id="order" href="/address/add/"><i class="icon-plus icon-white"></i>添加</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="span10">
+{% if address_list %}
+<table class="table-striped span10 table-condensed table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Postal Code</th>
+      <th>Manage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    {% for address in address_list %}
+      <td>{{ address.name }}</td>
+      <td>{{ address.address }}</td>
+      <td>{{ address.postal_code }}</td>
+      <td align="center"><a class="btn" href="/address/modify/{{address.id}}/"><i class="icon-edit"></i>Modify</a></td>
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>
+{% else %}
+You do not have a address now, please<a href="/address/add/"> add</a>
+{% endif %}
+</div>
+{% endblock %}

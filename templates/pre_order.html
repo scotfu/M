@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %}
+生成订单中
+{% endblock title %}
+{% block content %}
+<script type="text/javascript" >
+    function myclick(obj)
+    {
+        $("button.btn").removeClass("btn-success disabled");
+        var oi = obj.value;
+        address_id=oi;
+        url="/order/?"
+        //alert(url)
+        $("a#order").removeClass("disabled");
+        url=url+"address_id="+address_id;
+        //alert(url)
+        $("a#order").attr("href",url);
+        $(obj).addClass("btn-success disabled");
+    }
+	</script>
+
+
+<div class="page-header">
+<div class="row"><h2 class="span2">Confirm Order</h2>
+
+<div class="span5">
+
+<div class="btn-group">
+	<a class="btn btn-large btn-success pull-left 
+    {% if not is_only_digital %} disabled "{% else %}" href="/order" {% endif %} id="order" >
+    <i class="icon-shopping-cart icon-white"></i>Confirm</a>
+<a class="btn btn-large btn-info pull-left" id="cart" href="/cart/"><i class="icon-arrow-left icon-white"></i>返回</a>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="page-header">
+<h3>Total price：{{price}} </h3>
+</div>
+{% if not is_only_digital %}
+
+<div class="page-header">
+  <h3>Choose your address</h3>
+</div>
+
+<div id="address" class="span12">
+	{% if address_set %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+	   <th>Postal code</th>
+	<th>Choose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+
+{% for address in address_set %}
+      <td>{{address.name}}</td>
+      <td>{{address.address}}</td>
+	  <td>{{address.postal_code}}</td>
+
+<td><button  class="btn" value="{{address.id}}" onclick="myclick(this)">Choose</button></td>
+
+    </tr>
+	{% endfor %}
+	
+  </tbody>
+</table>
+{% else %}
+<div class="page-header span11">
+<h4>You do not have a  address.
+<a class="btn btn-success btn-large" href="/address/add/"><i class="icon-plus icon-white"></i>add new address</a></h4>
+</h4>
+
+</div>
+{% endif %}
+
+</div>
+{% endif %}
+
+
+<div class="page-header">
+  <h3>Order detail</h3>
+</div>
+
+<div class="span11">
+<ul class="thumbnails">
+{% for item in item_set %}
+
+<div class="row">
+<div class="myspan2">
+ <a href="/album/{{item.album.id}}/" class="thumbnail">
+      <img src="/media/{{item.album.pic}}" alt="">
+    </a>
+</div>
+<div class="span5">
+<h3> Album：{{ item.album.title }}{% if item.album.is_digital %}
+ (digital edition)
+{% endif %}
+</h3>
+<h4>Price：{{ item.album.price}}</h4>
+<h4>Amount：{{item.amount}}</h4>
+</div>
+</div>
+{% endfor %}
+{% endblock content %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}
+Modify Profile{% endblock title %}
+{% block content %}
+
+<div class="page-header">
+  <h2>Modify Profile</h2>
+</div>
+
+<form class="form-horizontal span8" method="post" action="/accounts/">
+{% csrf_token %}
+<fieldset>
+        {% for field in form.visible_fields %}
+       
+        <div class="control-group">
+        <label class="control-label" for="{{ field.name}}">{{ field.label}}</label> 
+        <div class="controls">
+        {# <input type="text" name="{{field.name}}" class="span3" placeholder="{{ field.label }}"> #}
+        {{field}}
+        <span class="help-inline">{{field.errors}}</span>
+        </div>
+        </div>
+  
+ {% endfor %}
+       </fieldset>
+	   <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Confirm</button>
+            <a class="btn" href="/">Cancel</a>
+          </div>
+</form>
+{% endblock content %}

@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}
+Music
+{% endblock title %}
+
+{% block content %}
+<div id="top" class="row">
+<div id="myCarousel" class="carousel slide myspan4">
+            <div class="carousel-inner">
+              <div class="item active">
+			  <a href="/album/1/">
+                <img src="/static/img/01.jpg" alt="">
+                <div class="carousel-caption">
+                  <h4>逆さまの蝶</h4>
+                  <p>SNoWの第2弾マキシ・シングル。凛とした強さ、繊細さと棘が同居し、聴く者の耳を捉えて離さない印象的なナンバー。ファンタジー・ホラー・アニメ『地獄少女』のオープニング・テーマ。</p>
+                </div>
+				</a>
+              </div>
+              <div class="item">
+			  <a href="/album/3/">
+                <img src="/static/img/04.jpg" alt="">
+                <div class="carousel-caption">
+                  <h4>Come Back To Me</h4>
+                  <p>这次是宇多田光相隔五年后，再次向世界的舞台进军。Utada优美的歌声加上稳沉的钢琴配乐，而歌词则是以 叙事的形式陈述。</p>
+                </div>
+				</a>
+              </div>
+              <div class="item">
+			  <a href="/album/4/">
+                <img src="/static/img/Deluxe Edition Cover.jpg" alt="">
+                <div class="carousel-caption">
+                  <h4>Goodbye Lullaby</h4>
+                  <p>摇滚创作才女艾薇儿睽违两年的新作,艾薇儿透过这张专辑的创作，延续过去一贯将她的生活体验融入其中的制作理念，但《Goodbye Lullaby》在她睽违近四年的时间中，呈现的将是更直接、更贴近她个人生命的全新作品。</p>
+                </div>
+				</a>
+              </div>
+            </div>
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+			
+</div>
+
+<div class="myspan4">
+   <div class="hero-unit">
+
+  <h1>Waiting</h1>
+  <p></p>
+  <p>
+    <a class="btn btn-info btn-large">
+      New feature will release soon !
+
+    </a>
+  </p>
+    </div>
+</div>
+
+
+<div class="pull-right">
+    <div class="mypage-header">
+
+<h3>Best sellers</h3></div>
+
+       <ul class="nav nav-tabs nav-stacked">
+           <li><a href="/album/1/">1. Hakasama no Chou</a></li>
+           <li><a href="/album/2/">2. Viva la Vida or Death and All His Friends</a></li>
+           <li><a href="/album/3/">3. Come Back To Me</a></li>
+           <li><a href="/album/4/">4. Goodbye Lullaby</a></li>
+           <li><a href="/album/5/">5. Hybrid Theory</a></li>
+           <li><a href="/album/6/">6. BoA</a></li>
+           <li><a href="/album/7/">7. Born To Die</a></li>
+           <li><a href="/album/8/">8. 是时候</a></li>
+           <li><a href="/album/10/">9. A Song for XX</a></li>
+           <li><a href="/album/790/">10.Under The Mistletoe</a></li>
+       </ul>
+
+</div>
+
+
+</div>
+
+
+<div class="">
+<div class="page-header">
+  <h1>Recommendations</h1>
+</div>
+
+<ul class="thumbnails">
+  <li class="myspan2">
+    <a href="/album/1/" class="thumbnail">
+      <img src="/static/img/01.jpg" alt="">
+	  <p align="center">SNoW:Hakasama no Chou</p>
+    </a>
+	
+  <li class="myspan2">
+    <a href="/album/789/" class="thumbnail">
+      <img src="/static/img/02.jpg" alt="">
+	  <p align="center">Lady GAGA: The edge of glory</p>
+    </a>
+  </li>
+    <li class="myspan2">
+    <a href="/album/6/" class="thumbnail">
+      <img src="/static/img/03.jpg" alt="">
+	  <p align="center">Boa: Boa</p>
+    </a>
+  </li>
+    <li class="myspan2">
+    <a href="/album/3" class="thumbnail">
+      <img src="/static/img/04.jpg" alt="">
+	  <p align="center">Utada:Come back to me</p>
+    </a>
+  </li>
+    <li class="myspan2">
+    <a href="/album/5/" class="thumbnail">
+      <img src="/static/img/05.jpg" alt="">
+	  <p align="center">Linkin Park : Hybrid Theory</p>
+    </a>
+  </li>
+    <li class="myspan2">
+    <a href="/album/7/" class="thumbnail">
+      <img src="/static/img/06.jpg" alt="">
+	  <p align="center">Lana Del Rey :Born to die</p>
+    </a>
+  </li>
+      <li class="myspan2">
+    <a href="/album/8/" class="thumbnail">
+      <img src="/static/img/07.jpg" alt="">
+	  <p align="center">孙燕姿：是时候</p>
+    </a>
+  </li>
+      <li class="myspan2">
+    <a href="/album/10/" class="thumbnail">
+      <img src="/static/img/08.jpg" alt="">
+	  <p align="center">滨崎步：A song for XX</p>
+    </a>
+  </li>
+      <li class="myspan2">
+    <a href="/album/790/" class="thumbnail">
+      <img src="/media/upload/1335973031.66.jpg" alt="">
+	  <p align="center">Justin Bieber :Under The Mistletoe</p>
+    </a>
+  </li>
+    <li class="myspan2">
+  <a href="/album/87/" class="thumbnail">
+    <img src="/media/upload/20120430013716.jpg" alt="">
+ <p align="center">五月天 :第二人生 明日版</p>
+  </a>
+</li>
+
+</ul>
+</div>
+<script type="text/javascript">
+$('.carousel').carousel({
+  interval: 2000
+})
+ </script>
+{% endblock content %}
