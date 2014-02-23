@@ -5,7 +5,7 @@ here = lambda *x: join(abspath(dirname(__file__)), *x)
 PROJECT_DIR = here("..", "..")
 
 #PROJECT_DIR='../' + os.path.dirname(__file__).replace('\\', '/')
-print PROJECT_DIR+'sfsdfsdfdsfdsfsdfsdfsdf'
+
 ADMINS = (
      ('Scott', 'scotfu@gmail.com'),
 )

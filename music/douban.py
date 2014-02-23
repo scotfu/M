@@ -16,20 +16,20 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'settings.local'
 from django.conf import settings
 
 from album.models import Album, Genre
-base_url=r'http://api.douban.com/music/subject/'
-comment_url=r'http://api.douban.com/review/'
-search_url=r'http://api.douban.com/music/subjects'
-apikey='apikey='+os.environ['DOUBAN_API_KEY']
-default_data_type='alt=json'
+base_url = r'http://api.douban.com/music/subject/'
+comment_url = r'http://api.douban.com/review/'
+search_url = r'http://api.douban.com/music/subjects'
+apikey = 'apikey=' + os.environ['DOUBAN_API_KEY']
+default_data_type = 'alt=json'
 
-upload_dir=os.path.dirname(__file__).replace('\\', '/')+'../media/upload'
-log_dir=os.path.dirname(__file__).replace('\\', '/')
+upload_dir = os.path.dirname(__file__).replace('\\', '/')+'../media/upload'
+log_dir = os.path.dirname(__file__).replace('\\', '/') + '../logs'
 
 
 def initlog():
     logger = logging.getLogger()
     logfile = 'douban.log'
-    hdlr = logging.FileHandler(log_dir+'/log.txt')
+    hdlr = logging.FileHandler(log_dir+'/douban_log')
     formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
     hdlr.setFormatter(formatter)
     logger.addHandler(hdlr)
