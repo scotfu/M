@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 #coding=utf-8
+
 import urllib
 import urllib2
 import json
-from album.models import Album, Genre
 import sys
 import os
 import time
@@ -11,13 +11,18 @@ import logging
 reload(sys)
 sys.setdefaultencoding('utf8')
 
+sys.path.append('/home/fu/workspaces/M/')
+os.environ['DJANGO_SETTINGS_MODULE'] = 'settings.local'
+from django.conf import settings
+
+from album.models import Album, Genre
 base_url=r'http://api.douban.com/music/subject/'
 comment_url=r'http://api.douban.com/review/'
 search_url=r'http://api.douban.com/music/subjects'
-apikey='apikey=0aba7aba95bae0ec202f702fc130a2c4'
+apikey='apikey='+os.environ['DOUBAN_API_KEY']
 default_data_type='alt=json'
 
-upload_dir=os.path.dirname(__file__).replace('\\', '/')+'/media/upload'
+upload_dir=os.path.dirname(__file__).replace('\\', '/')+'../media/upload'
 log_dir=os.path.dirname(__file__).replace('\\', '/')
 
 
@@ -140,3 +145,7 @@ def album_import(url):
     new_album=Album.objects.create(title=title, singer=singer, year=year,
             description=description, genre=genre, isbn=isbn, company=company,
             pic=image, price=100, amount=100, store_id=1)
+
+
+if __name__ == '__main__':
+    search_by_key_word()
