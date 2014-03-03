@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 #coding=utf-8
 from django.contrib import admin
-from album.models import Album, Genre
+from models import Album, Genre
 
 
 class AlbumAdmin(admin.ModelAdmin):

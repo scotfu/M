@@ -3,7 +3,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from address.models import Address
-from album.models import Album
+from albums.models import Album
 
 
 class Order(models.Model):

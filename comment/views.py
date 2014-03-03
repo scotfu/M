@@ -3,7 +3,7 @@
 from django.http import HttpResponseRedirect, Http404
 from accounts.forms import CommentForm
 from comment.models import Comment
-from album.models import Album
+from albums.models import Album
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 

@@ -5,7 +5,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import RequestContext
-from album.models import Album
+from albums.models import Album
 from cart.models import CartItem, Cart, Item
 import re
 

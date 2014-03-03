@@ -15,7 +15,7 @@ sys.path.append('/home/fu/workspaces/M/')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings.local'
 from django.conf import settings
 
-from album.models import Album, Genre
+from albums.models import Album, Genre
 base_url = r'http://api.douban.com/music/subject/'
 comment_url = r'http://api.douban.com/review/'
 search_url = r'http://api.douban.com/music/subjects'

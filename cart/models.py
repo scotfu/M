@@ -2,7 +2,7 @@
 #coding=utf-8
 from django.db import models
 from django.contrib.auth.models import User
-from album.models import Album
+from albums.models import Album
 
 
 class Cart(models.Model):

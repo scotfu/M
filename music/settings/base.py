@@ -130,7 +130,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     #'django.contrib.staticfiles',
-    'album',
+    'albums',
     'comment',
     'address',
     'accounts',
