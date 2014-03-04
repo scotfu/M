@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 #coding=utf-8
 from django.conf.urls import patterns, url
-from django.views.generic.base import TemplateView
+from .views import RegisterSuccessView
 
 urlpatterns = patterns('accounts.views',
     url(r'^$', 'modifyview'),
@@ -12,6 +12,5 @@ urlpatterns = patterns('accounts.views',
     )
 
 urlpatterns += patterns('',
-    url(r'^register/success/$',\
-        TemplateView.as_view(template_name='register_success.html')),
+    url(r'^register/success/$',RegisterSuccessView.as_view()),
     )

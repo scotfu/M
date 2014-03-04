@@ -10,17 +10,17 @@ import re
 
 class LoginForm(forms.Form):
 
-    username=forms.CharField(max_length=20, label='Username')
-    password=forms.CharField(widget= forms.PasswordInput(), label='Password')
+    username = forms.CharField(max_length=20, label='Username')
+    password = forms.CharField(widget=forms.PasswordInput(), label='Password')
 
     def clean_username(self):
-        username=self.cleaned_data['username']
+        username = self.cleaned_data['username']
         return username
 
     def clean_password(self):
-        password=self.cleaned_data['password']
+        password = self.cleaned_data['password']
         user = authenticate(username=self.cleaned_data['username'],
-        password=self.cleaned_data['password'])
+        password = self.cleaned_data['password'])
         if user is None:
             raise forms.ValidationError('Wrong password')
         return password
@@ -28,15 +28,15 @@ class LoginForm(forms.Form):
 
 class RegisterForm(forms.Form):
 
-    email=forms.EmailField(label='Email')
-    username=forms.CharField(max_length=20, label='Username')
-    password=forms.CharField(widget=forms.PasswordInput(), label='Password')
-    confirm_password=forms.CharField(widget=forms.PasswordInput(),
+    email = forms.EmailField(label='Email')
+    username = forms.CharField(max_length=20, label='Username')
+    password = forms.CharField(widget=forms.PasswordInput(), label='Password')
+    confirm_password = forms.CharField(widget=forms.PasswordInput(),
                             label='Confirm Password')
-    nickname=forms.CharField(max_length=20, label='Nickname')
+    nickname = forms.CharField(max_length=20, label='Nickname')
 
     def clean_username(self):
-        username=self.cleaned_data['username']
+        username = self.cleaned_data['username']
         if not re.search(r'\w+$', username):
             raise forms.ValidationError('输入非法。')
         try:

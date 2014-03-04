@@ -8,6 +8,7 @@ from accounts.forms import RegisterForm, LoginForm, AccountForm
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.views.generic import TemplateView
 from cart.models import Cart
 from cart.views import getCart, cartMerge
 
@@ -124,3 +125,7 @@ def modifyview(request):
             'form': form},
              context_instance=RequestContext(request),
              )
+
+class RegisterSuccessView(TemplateView):
+    template_name = "register_success.html"
+
